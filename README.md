@@ -58,7 +58,7 @@ PACKET FORMAT: [msg flag] [word length] [num incorrect] [data]
 
 ## Credits
 
-###Fernando Mello
+### Fernando Mello
 [femello.me](http://femello.me)
 
 femello@gatech.edu
