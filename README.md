@@ -32,8 +32,6 @@ Once connected, the client is asked whether they wish to play **single player** 
 
 ## Implementation
 
-Both client and server follow a specific message format guideline.
-
 ### Client
 
 The client establishes a TCP connection to the server using the server and port arguments in its socket, and sends a packet with a 1-byte representation of the numbers 0 or 2, indicating game-start. In a loop, it, then, receives a packet from the server:
@@ -41,6 +39,8 @@ The client establishes a TCP connection to the server using the server and port 
 - If it's a **game control packet** ("flag"/first field is 0), the client displays some game information and waits for a valid input from the user. Once obtained, the input is sent to the server in the form: [0x01] [guess].
 
 - If it's a **message packet** ("flag"/first field is the length of its contents), the client prints out it's contents and disconnects from the server (as it assumes that the packet is either a game-ending or server-overload message).
+
+PACKET FORMAT: [msg length] [data]
 
 ### Server
 
@@ -52,7 +52,9 @@ New connections send a **game-start packet**, and the server set up a new game a
 
 The server stays up, however, and continues to serve its current connections or accept new ones when possible.
 
-*[The aforementioned **multiplayer mode** is, unfortunately, unavailable, due to time constraints. The server implementation has the whole backing structure for accepting multiplayer games, including adapted game assignments and intermediate game states, but the game mechanics could not be implemented in time.]*
+PACKET FORMAT: [msg flag] [word length] [num incorrect] [data]
+
+*The aforementioned **multiplayer mode** is, unfortunately, currently unavailable. The server implementation has the whole backing structure for accepting multiplayer games, including adapted game assignments and intermediate game states, but the game mechanics have not yet been implemented.*
 
 ## Credits
 
