@@ -1,4 +1,4 @@
-# CS 3251 Project 2: TCP Hangman Game
+# TCP Hangman Game
 
 ## Description
 
